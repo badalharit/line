@@ -11,23 +11,25 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        var y = 0, x = 0, a = 640, b = 1185, flag = false,interval,first,screenHeight,screenWidth;
-        screenHeight = screen.height;
-        screenWidth = screen.width;
+        var y = 0, x = 0, flag = false,interval,first,screenHeight,screenWidth;
+        var screenHeightValue = screen.height-154;
+        var screenWidthValue = screen.width-100;
+        a = screenHeightValue;
+        b = screenWidthValue;
         function getCoordinates() {
             var node = document.getElementById("line");
             interval = setInterval(move, 3);//Just for Delay in program execution
             function move() {
-                if (y == 640) {
-                    if (x == 1185 || flag == true) {
+                if (y == screenHeightValue) {
+                    if (x == screenWidthValue || flag == true) {
                         if (a == 9) {
                             flag = true;
                             if (b == 9) {
                                 clearInterval(interval);
                                 y = 0;
                                 x = 0;
-                                a = 640;
-                                b = 1185;
+                                a = screenHeightValue;
+                                b = screenWidthValue;
                                 flag = false;
                                 first = true;
                                 node.style.height = 25 + 'px';
@@ -39,14 +41,14 @@ and open the template in the editor.
                                 node.style.left = b + 'px';
                             }
                         } else {
-                            node.style.top = 640 + 'px';
+                            node.style.top = screenHeightValue + 'px';
                             node.style.height = 25 + 'px';
                             node.style.width = 5 + 'px';
                             a -= 1;
                             node.style.top = a + 'px';
                         }
                     } else {
-                        node.style.top = 660 + 'px';
+                        node.style.top = screenHeightValue + 'px';
                         node.style.height = 5 + 'px';
                         node.style.width = 25 + 'px';
                         x += 1;
@@ -74,7 +76,7 @@ and open the template in the editor.
 </head>
 
 <body>
-    <div id="container" style="height:660px;width: 1185px;background-color: aqua;">
+    <div id="container" style="height:870px;width: 1180px;background-color: aqua;">
         <div id="line" style="height:25px;width: 5px;background-color: red;position: absolute;"></div>
     </div>
 
