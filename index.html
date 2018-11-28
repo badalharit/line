@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var y = 0, x = 0, a = 640, b = 1185, flag = false,interval,first,screenHeight,screenWidth;
+        screenHeight = screen.height;
+        screenWidth = screen.width;
+        function getCoordinates() {
+            var node = document.getElementById("line");
+            interval = setInterval(move, 3);//Just for Delay in program execution
+            function move() {
+                if (y == 640) {
+                    if (x == 1185 || flag == true) {
+                        if (a == 9) {
+                            flag = true;
+                            if (b == 9) {
+                                clearInterval(interval);
+                                y = 0;
+                                x = 0;
+                                a = 640;
+                                b = 1185;
+                                flag = false;
+                                first = true;
+                                node.style.height = 25 + 'px';
+                                node.style.width = 5 + 'px';
+                            } else {
+                                node.style.height = 5 + 'px';
+                                node.style.width = 25 + 'px';
+                                b -= 1;
+                                node.style.left = b + 'px';
+                            }
+                        } else {
+                            node.style.top = 640 + 'px';
+                            node.style.height = 25 + 'px';
+                            node.style.width = 5 + 'px';
+                            a -= 1;
+                            node.style.top = a + 'px';
+                        }
+                    } else {
+                        node.style.top = 660 + 'px';
+                        node.style.height = 5 + 'px';
+                        node.style.width = 25 + 'px';
+                        x += 1;
+                        node.style.left = x + 'px';
+                    }
+                } else {
+                    y += 1;
+                    node.style.top = y + 'px';
+                }
+            }
+        }
+        function stopExec(){
+            clearInterval(interval);
+        }
+
+    var customSwitch = (function() { //Immediately invoked function expression
+    first = true;                //self-executing anonymous function
+    return function() {
+    first ? getCoordinates() : stopExec();
+    first = !first;
+    }
+    })();
+
+    </script>
+</head>
+
+<body>
+    <div id="container" style="height:660px;width: 1185px;background-color: aqua;">
+        <div id="line" style="height:25px;width: 5px;background-color: red;position: absolute;"></div>
+    </div>
+
+    <input type="button" value="Start | Stop" onclick="customSwitch()" style="border-radius: 11px; margin-left: 510px; background-color: green;">
+</body>
+
+</html>
