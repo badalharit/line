@@ -17,6 +17,9 @@ and open the template in the editor.
         a = screenHeightValue;
         b = screenWidthValue;
         function getCoordinates() {
+            var ContainerResol = document.getElementById("container");
+            ContainerResol.style.height = screenHeightValue + 'px';
+            ContainerResol.style.width = screenWidthValue + 'px';
             var node = document.getElementById("line");
             interval = setInterval(move, 3);//Just for Delay in program execution
             function move() {
@@ -55,6 +58,8 @@ and open the template in the editor.
                         node.style.left = x + 'px';
                     }
                 } else {
+                    node.style.height = 25 + 'px';
+                    node.style.width = 5 + 'px';
                     y += 1;
                     node.style.top = y + 'px';
                 }
@@ -76,8 +81,8 @@ and open the template in the editor.
 </head>
 
 <body>
-    <div id="container" style="height:870px;width: 1180px;background-color: aqua;">
-        <div id="line" style="height:25px;width: 5px;background-color: red;position: absolute;"></div>
+    <div id="container" style="background-color: aqua;">
+    <div id="line" style="background-color: red;position: absolute;"></div>
     </div>
 
     <input type="button" value="Start | Stop" onclick="customSwitch()" style="border-radius: 11px; margin-left: 510px; background-color: green;">
